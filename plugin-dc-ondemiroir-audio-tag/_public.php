@@ -13,7 +13,6 @@ class DSN_audio_tpl
 					echo $oggpossible;
 				?>';
 	}
-
 }
 
 ?>
