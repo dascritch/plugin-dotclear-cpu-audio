@@ -4,7 +4,7 @@ if (!defined('DC_RC_PATH')) { return; }
 
 $core->tpl->addValue('OggFile',					['DSN_audio_tpl','OggFile']);
 
-class DSN_tpl
+class DSN_audio_tpl
 {
 	public static function OggFile($attr) {
 		return '<?php
