@@ -15,7 +15,7 @@ $this->registerModule(
         /* Name */                      "OndeMiroir Audio",
         /* Description*/                "OndeMiroir Audio",
         /* Author */                    "Da Scritch",
-        /* Version */                   '0.4',
+        /* Version */                   '0.5',
         array(
             'permissions' 	=>			'admin',
             'type'  		=>			'plugin'
