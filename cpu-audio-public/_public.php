@@ -8,9 +8,6 @@ $core->tpl->addBlock('HasChapterFile',				['CPU_Audio_tpl','HasChapterFile']);
 $core->tpl->addValue('WaveformFile',                ['CPU_Audio_tpl','WaveformFile']);
 $core->tpl->addBlock('HasWaveformFile',             ['CPU_Audio_tpl','HasWaveformFile']);
 
-$core->tpl->addValue('OggFile',                     ['CPU_Audio_tpl','OggFile']);
-$core->tpl->addValue('ChapterFile',                 ['CPU_Audio_tpl','ChapterFile']);
-$core->tpl->addBlock('HasChapterFile',				['CPU_Audio_tpl','HasChapterFile']);
 
 /**
 $this->tpl_path  [] = $core->getPF('default-templates')
@@ -58,7 +55,7 @@ class CPU_Audio_tpl
                     $chapterpossible = preg_replace(
                         ["/\.mp3/", "/\/podcast\//"],
                         [".vtt", "/tracks/"],
-                        $attach_f->file_url);
+                        $attach_f->file);
                     if (file_exists($chapterpossible)) { 
                 ?>'.$content."<?php } ?>\n";
     }
