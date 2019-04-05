@@ -12,12 +12,12 @@
 if (!defined('DC_RC_PATH')) { return; }
 
 $this->registerModule(
-        /* Name */                      "OndeMiroir Audio",
-        /* Description*/                "OndeMiroir Audio",
+        /* Name */                      "CPU Audio",
+        /* Description*/                "CPU Audio for Dotclear",
         /* Author */                    "Da Scritch",
-        /* Version */                   '0.5',
-        array(
+        /* Version */                   '2.0',
+        [
             'permissions' 	=>			'admin',
             'type'  		=>			'plugin'
-        )
+        ]
 );
