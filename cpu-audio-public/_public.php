@@ -2,9 +2,9 @@
 
 if (!defined('DC_RC_PATH')) { return; }
 
-$core->tpl->addValue('OggFile',                     ['DSN_audio_tpl','OggFile']);
-$core->tpl->addValue('ChapterFile',                 ['DSN_audio_tpl','ChapterFile']);
-$core->tpl->addBlock('HasChapterFile',				['DSN_audio_tpl','HasChapterFile']);
+$core->tpl->addValue('OggFile',                     ['CPU_Audio_tpl','OggFile']);
+$core->tpl->addValue('ChapterFile',                 ['CPU_Audio_tpl','ChapterFile']);
+$core->tpl->addBlock('HasChapterFile',				['CPU_Audio_tpl','HasChapterFile']);
 $core->tpl->addValue('WaveformFile',                ['CPU_Audio_tpl','WaveformFile']);
 $core->tpl->addBlock('HasWaveformFile',             ['CPU_Audio_tpl','HasWaveformFile']);
 
@@ -17,21 +17,19 @@ $this->tpl_path  [] = $core->getPF('default-templates')
 **/
 
 
+/*
 class CPU_Audio_behaviors
 {
     public static function publicHeadContent($core) {
         return $core->util->jsLoad($core->getPF('js/cpu-audio.js'));
     }
-
     public static function addMP3template($core) {
         $core->tpl->setPath(
             dirname(__FILE__) . '/default-templates',
             $core->tpl->getPath());
-
-
     }
 }
-
+  */
 
 class CPU_Audio_tpl
 {
@@ -69,7 +67,7 @@ class CPU_Audio_tpl
         return '<?php
                     $waveformpossible = preg_replace(
                         ["/\.mp3/", "/\/podcast\//"],
-                        [".png", "/waveform/"],
+                        [".png", "/waveforms/"],
                         $attach_f->file_url);
                     echo $waveformpossible;
                 ?>';
@@ -79,7 +77,7 @@ class CPU_Audio_tpl
         return '<?php
                     $waveformpossible = preg_replace(
                         ["/\.mp3/", "/\/podcast\//"],
-                        [".png", "/waveform/"],
+                        [".png", "/waveforms/"],
                         $attach_f->file);
                     if (file_exists($waveformpossible)) { 
                 ?>'.$content."<?php } ?>\n";
