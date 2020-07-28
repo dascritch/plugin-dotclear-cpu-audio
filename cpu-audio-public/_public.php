@@ -8,6 +8,8 @@ $core->addBehavior('publicBeforeDocument', ['CPU_Audio_behaviors', 'addMP3templa
 $core->tpl->addValue('OggFile',                     ['CPU_Audio_tpl','OggFile']);
 $core->tpl->addValue('ChapterFile',                 ['CPU_Audio_tpl','ChapterFile']);
 $core->tpl->addBlock('HasChapterFile',				['CPU_Audio_tpl','HasChapterFile']);
+$core->tpl->addValue('WaveformFile',                ['CPU_Audio_tpl','WaveformFile']);
+$core->tpl->addBlock('HasWaveformFile',             ['CPU_Audio_tpl','HasWaveformFile']);
 
 /**
 $this->tpl_path  [] = $core->getPF('default-templates')
@@ -58,14 +60,29 @@ class CPU_Audio_tpl
                         ["/\.mp3/", "/\/podcast\//"],
                         [".vtt", "/tracks/"],
                         $attach_f->file_url);
-                    $chapterpossiblefile = preg_replace(
-                        ["/\.mp3/", "/\/podcast\//"],
-                        [".vtt", "/tracks/"],
-                        $attach_f->file);
-                    if (file_exists( $chapterpossiblefile)) { 
+                    if (file_exists($chapterpossible)) { 
                 ?>'.$content."<?php } ?>\n";
     }
 
+    public static function WaveformFile($attr) {
+        return '<?php
+                    $waveformpossible = preg_replace(
+                        ["/\.mp3/", "/\/podcast\//"],
+                        [".png", "/waveform/"],
+                        $attach_f->file_url);
+                    echo $waveformpossible;
+                ?>';
+    }
+
+    public static function HasWaveformFile($attr, $content) {
+        return '<?php
+                    $waveformpossible = preg_replace(
+                        ["/\.mp3/", "/\/podcast\//"],
+                        [".png", "/waveform/"],
+                        $attach_f->file);
+                    if (file_exists($waveformpossible)) { 
+                ?>'.$content."<?php } ?>\n";
+    }
 }
 
 ?>
