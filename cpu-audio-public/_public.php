@@ -6,6 +6,8 @@ $core->addBehavior('publicHeadContent', ['CPU_Audio_behaviors', 'publicHeadConte
 $core->addBehavior('publicBeforeDocument', ['CPU_Audio_behaviors', 'addMP3template']);
 
 $core->tpl->addValue('OggFile',                     ['CPU_Audio_tpl','OggFile']);
+$core->tpl->addBlock('HasHlsFile',                  ['CPU_Audio_tpl','HasHlsFile']);
+$core->tpl->addValue('HlsFile',                     ['CPU_Audio_tpl','HlsFile']);
 $core->tpl->addValue('ChapterFile',                 ['CPU_Audio_tpl','ChapterFile']);
 $core->tpl->addBlock('HasChapterFile',				['CPU_Audio_tpl','HasChapterFile']);
 $core->tpl->addValue('WaveformFile',                ['CPU_Audio_tpl','WaveformFile']);
@@ -18,9 +20,9 @@ $this->tpl_path  [] = $core->getPF('default-templates')
 
 class CPU_Audio_behaviors
 {
-    public static function publicHeadContent($core) {
-        return $core->util->jsLoad($core->getPF('js/cpu-audio.js'));
-    }
+//    public static function publicHeadContent($core) {
+//        return $core->util->jsLoad($core->getPF('js/cpu-audio.js'));
+//    }
 
     public static function addMP3template($core) {
         $core->tpl->setPath(
@@ -44,6 +46,26 @@ class CPU_Audio_tpl
 				?>';
 	}
 
+    public static function HlsFile($attr) {
+        return '<?php
+                    $hlspossible = preg_replace(
+                        ["/\.mp3/", "/\/podcast\//"],
+                        ["/index.m3u8", "/hls/"],
+                        $attach_f->file_url);
+                    echo $hlspossible;
+                ?>';
+    }
+
+    public static function HasHlsFile($attr, $content) {
+        return '<?php
+                    $hlspossible = preg_replace(
+                        ["/\.mp3/", "/\/podcast\//"],
+                        ["/index.m3u8", "/hls/"],
+                        $attach_f->file);
+                    if (file_exists($hlspossible)) { 
+                ?>'.$content."<?php } ?>\n";
+    }
+
     public static function ChapterFile($attr) {
         return '<?php
                     $chapterpossible = preg_replace(
@@ -59,7 +81,7 @@ class CPU_Audio_tpl
                     $chapterpossible = preg_replace(
                         ["/\.mp3/", "/\/podcast\//"],
                         [".vtt", "/tracks/"],
-                        $attach_f->file_url);
+                        $attach_f->file);
                     if (file_exists($chapterpossible)) { 
                 ?>'.$content."<?php } ?>\n";
     }
