@@ -36,74 +36,48 @@ class CPU_Audio_behaviors
 
 class CPU_Audio_tpl
 {
-	public static function OggFile($attr) {
-		return '<?php
-					$oggpossible = preg_replace(
-                        ["/\.mp3/", "/\/podcast\//"],
-                        [".ogg", "/"],
-                        $attach_f->file_url);
-					echo $oggpossible;
-				?>';
-	}
-
-    public static function HlsFile($attr) {
-        return '<?php
-                    $hlspossible = preg_replace(
-                        ["/\.mp3/", "/\/podcast\//"],
-                        ["/index.m3u8", "/hls/"],
-                        $attach_f->file_url);
-                    echo $hlspossible;
-                ?>';
-    }
-
-    public static function HasHlsFile($attr, $content) {
-        return '<?php
-                    $hlspossible = preg_replace(
-                        ["/\.mp3/", "/\/podcast\//"],
-                        ["/index.m3u8", "/hls/"],
-                        $attach_f->file);
-                    if (file_exists($hlspossible)) { 
+    public static function checkFile($path, $ext, $content) {
+        return '<?php if (file_exists( preg_replace(
+                        ["/\/podcast\//", "/\.mp3/"],
+                        ["'.$path.'", "'.$ext.'"],
+                        $attach_f->file) )) { 
                 ?>'.$content."<?php } ?>\n";
     }
 
-    public static function ChapterFile($attr) {
-        return '<?php
-                    $chapterpossible = preg_replace(
-                        ["/\.mp3/", "/\/podcast\//"],
-                        [".vtt", "/tracks/"],
-                        $attach_f->file_url);
-                    echo $chapterpossible;
-                ?>';
+    public static function returnUrl($path, $ext) {
+        return '<?php echo preg_replace(
+                        ["/\/podcast\//", "/\.mp3/"],
+                        ["'.$path.'", "'.$ext.'"],
+                        $attach_f->file_url); ?>'."\n";
+    }
+
+
+	public static function OggFile($attr) {
+		return CPU_Audio_tpl::returnUrl('/', '.ogg');
+	}
+
+    public static function HasHlsFile($attr, $content) {
+        return CPU_Audio_tpl::checkFile('/hls/', '/index.m3u8', $content);
+    }
+
+    public static function HlsFile($attr) {
+        return CPU_Audio_tpl::returnUrl('/hls/', '/index.m3u8');
     }
 
     public static function HasChapterFile($attr, $content) {
-        return '<?php
-                    $chapterpossible = preg_replace(
-                        ["/\.mp3/", "/\/podcast\//"],
-                        [".vtt", "/tracks/"],
-                        $attach_f->file);
-                    if (file_exists($chapterpossible)) { 
-                ?>'.$content."<?php } ?>\n";
+        return CPU_Audio_tpl::checkFile('/tracks/', '.vtt', $content);
     }
 
-    public static function WaveformFile($attr) {
-        return '<?php
-                    $waveformpossible = preg_replace(
-                        ["/\.mp3/", "/\/podcast\//"],
-                        [".png", "/waveform/"],
-                        $attach_f->file_url);
-                    echo $waveformpossible;
-                ?>';
+    public static function ChapterFile($attr) {
+        return CPU_Audio_tpl::returnUrl('/tracks/', '.vtt');
     }
 
     public static function HasWaveformFile($attr, $content) {
-        return '<?php
-                    $waveformpossible = preg_replace(
-                        ["/\.mp3/", "/\/podcast\//"],
-                        [".png", "/waveform/"],
-                        $attach_f->file);
-                    if (file_exists($waveformpossible)) { 
-                ?>'.$content."<?php } ?>\n";
+        return CPU_Audio_tpl::checkFile('/waveforms/', '.png', $content);
+    }
+
+    public static function WaveformFile($attr) {
+        return CPU_Audio_tpl::returnUrl('/waveforms/', '.png');
     }
 }
 
