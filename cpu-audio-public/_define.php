@@ -12,12 +12,14 @@
 if (!defined('DC_RC_PATH')) { return; }
 
 $this->registerModule(
-        /* Name */                      "CPU Audio",
-        /* Description*/                "CPU Audio for Dotclear",
-        /* Author */                    "Da Scritch",
-        /* Version */                   '2.0',
-        [
-            'permissions' 	=>			'admin',
-            'type'  		=>			'plugin'
-        ]
+		/* Name */                      "CPU Audio",
+		/* Description*/                "CPU Audio for Dotclear",
+		/* Author */                    "Da Scritch",
+		/* Version */                   'addMP3templateV2.1',
+		[
+			'permissions' 	=>			'admin',
+			'type'  		=>			'plugin',
+			'priority'      =>          1,
+			'requires' => [['core', '2.24']]
+		]
 );
