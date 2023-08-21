@@ -15,7 +15,7 @@ $this->registerModule(
 		/* Name */                      "CPU Audio",
 		/* Description*/                "CPU Audio for Dotclear",
 		/* Author */                    "Da Scritch",
-		/* Version */                   'addMP3templateV2.1',
+		/* Version */                   '2.1',
 		[
 			'permissions' 	=>			'admin',
 			'type'  		=>			'plugin',

@@ -2,12 +2,14 @@
 
 if (!defined('DC_RC_PATH')) { return; }
 
-dcCore::app()->addBehavior('publicHeadContentV2', ['CPU_Audio_behaviors', 'publicHeadContent']);
-dcCore::app()->addBehavior('publicBeforeDocumentV2', ['CPU_Audio_behaviors', 'addMP3template']);
+$app = dcCore::app();
+$app->addBehavior('publicHeadContentV2', ['CPU_Audio_behaviors', 'publicHeadContent']);
+$app->addBehavior('publicBeforeDocumentV2', ['CPU_Audio_behaviors', 'addMP3template']);
 
-dcCore::app()->tpl->addValue('OggFile',                     ['CPU_Audio_tpl','OggFile']);
-dcCore::app()->tpl->addValue('ChapterFile',                 ['CPU_Audio_tpl','ChapterFile']);
-dcCore::app()->tpl->addBlock('HasChapterFile',				['CPU_Audio_tpl','HasChapterFile']);
+$tpl = $app->tpl;
+$tpl->addValue('OggFile',			['CPU_Audio_tpl','OggFile']);
+$tpl->addValue('ChapterFile',		['CPU_Audio_tpl','ChapterFile']);
+$tpl->addBlock('HasChapterFile',	['CPU_Audio_tpl','HasChapterFile']);
 
 
 class CPU_Audio_behaviors
@@ -17,9 +19,10 @@ class CPU_Audio_behaviors
 	}
 
 	public static function addMP3template() {
-		dcCore::app()->tpl->setPath(
+		$tpl = dcCore::app()->tpl;
+		$tpl->setPath(
 			dirname(__FILE__) . '/default-templates',
-			dcCore::app()->tpl->getPath());
+			$tpl->getPath());
 	}
 }
 
