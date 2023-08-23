@@ -2,7 +2,7 @@
 /**
  * See https://dotclear.watch/Billet/Les-classes-de-module-My
  */
-namespace Dotclear\Plugin\cpuaudio;
+namespace Dotclear\Plugin\cpuAudioPublic;
 
 use Dotclear\Module\MyPlugin;
 

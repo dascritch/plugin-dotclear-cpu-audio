@@ -2,7 +2,7 @@
 # Adapted from https://dotclear.watch/Billet/Fichier-Frontend-d-un-module
 # TEMPORAIRE cf https://forum.dotclear.org/viewtopic.php?pid=350354
 
-namespace Dotclear\Plugin\cpuaudio;
+namespace Dotclear\Plugin\cpuAudioPublic;
 
 use dcCore;
 use Dotclear\Core\Process;

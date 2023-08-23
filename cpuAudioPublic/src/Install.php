@@ -1,6 +1,6 @@
 <?php
 
-namespace Dotclear\Plugin\cpuaudio;
+namespace Dotclear\Plugin\cpuAudioPublic;
 
 use Dotclear\Core\Process;
 
