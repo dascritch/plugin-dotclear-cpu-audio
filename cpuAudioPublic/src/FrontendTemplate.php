@@ -16,26 +16,28 @@ class FrontendTemplate
 	public static function addMP3template() {
 		error_log('FrontEndTemplate:addMP3template');
 		$tpl = dcCore::app()->tpl;
-		$tpl->setPath(
-			dirname(__FILE__) . '/../default-templates',
-			$tpl->getPath());
+		$tpl->setPath(My::path().'/default-templates', $tpl->getPath());
 	}
 
 	public static function checkFile($path, $ext, $content) {
 		return '<?php
+					$thisfile = dcCore::app()->ctx->dir . dcCore::app()->ctx->basename;
+					error_log("thisfile = ". $thisfile ."*" );
+					error_log("attach_f = ". $attach_f);
 					if (file_exists( preg_replace(
 						["/\/podcast\//", "/\.mp3/"],
 						["'.$path.'", "'.$ext.'"],
-						dcCore::app()->ctx->file) )) {
+						$thisfile) )) {
 				?>'.$content."<?php } ?>";
 	}
 
 	public static function fileSize($attr, $ext, $content) {
 		return '<?php
+					$thisfile = dcCore::app()->ctx->dir . dcCore::app()->ctx->basename;
 					$check_for_file =  preg_replace(
 						["/\/podcast\//", "/\.mp3/"],
 						["'.$path.'", "'.$ext.'"],
-						dcCore::app()->ctx->file);
+						$thisfile);
 					echo filesize($check_for_file);
 				?>';
 	}
