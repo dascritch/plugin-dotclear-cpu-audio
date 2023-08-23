@@ -9,17 +9,20 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 #
 # -- END LICENSE BLOCK -----------------------------------------
+# Documentation, see https://dotclear.watch/Billet/Fichier-de-d%C3%A9finition-d-un-module
 if (!defined('DC_RC_PATH')) { return; }
 
 $this->registerModule(
-		/* Name */                      "CPU Audio",
-		/* Description*/                "CPU Audio for Dotclear",
-		/* Author */                    "Da Scritch",
-		/* Version */                   '2.1',
-		[
-			'permissions' 	=>			'admin',
-			'type'  		=>			'plugin',
-			'priority'      =>          1,
-			'requires' => [['core', '2.24']]
-		]
+	/* Name */                  "CPU Audio",
+	/* Description*/            "CPU Audio for Dotclear",
+	/* Author */                "Da Scritch",
+	/* Version */               '3.0',
+	[
+		'requires' 		=> [
+							['core', '2.26']
+						],
+		'priority'      =>         1,
+		'type'  		=>		'plugin',
+		'support'		=> 		'https://github.com/dascritch/plugin-dotclear-cpu-audio',
+	]
 );
