@@ -11,8 +11,6 @@
 # -- END LICENSE BLOCK -----------------------------------------
 # Documentation, see https://dotclear.watch/Billet/Fichier-de-d%C3%A9finition-d-un-module
 
-error_log('define');
-
 if (!defined('DC_RC_PATH')) { return; }
 
 $this->registerModule(

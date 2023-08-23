@@ -2,15 +2,10 @@
 # Adapted from https://dotclear.watch/Billet/Fichier-Frontend-d-un-module
 # TEMPORAIRE cf https://forum.dotclear.org/viewtopic.php?pid=350354
 
-
-declare(strict_types=1);
-
 namespace Dotclear\Plugin\cpuaudio;
 
 use dcCore;
 use Dotclear\Core\Process;
-
-error_log('FrontEnd');
 
 class Frontend extends Process
 {

@@ -1,9 +1,5 @@
 <?php
 
-error_log('install');
-
-declare(strict_types=1);
-
 namespace Dotclear\Plugin\cpuaudio;
 
 use Dotclear\Core\Process;

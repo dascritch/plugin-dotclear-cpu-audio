@@ -1,7 +1,5 @@
 <?php
 
-error_log('FrontEndTemplate');
-
 namespace Dotclear\Plugin\cpuaudio;
 
 use dcCore;
