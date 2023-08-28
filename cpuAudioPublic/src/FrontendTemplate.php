@@ -27,7 +27,7 @@ class FrontendTemplate
 				?>'.$content."<?php } ?>";
 	}
 
-	public static function fileSize(string $attr, string $ext, string $content): string {
+	public static function fileSize(string $attr, string $ext): string {
 		return '<?php
 					$check_for_file = preg_replace(
 						["/\/podcast\//", "/\.mp3/"],
