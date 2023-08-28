@@ -9,13 +9,11 @@ class FrontendTemplate
 {
 
 	public static function publicHeadContent() {
-		error_log('FrontEndTemplate:publicHeadContent');
 		// return dcCore::app()->util->jsLoad($core->getPF('js/cpu-audio.js'));
 		// should also consider via preferences to choose lib compiled version : simple bouton or download
 	}
 
 	public static function addMP3template() {
-		error_log('FrontEndTemplate:addMP3template');
 		$tpl = dcCore::app()->tpl;
 		$tpl->setPath(My::path().'/default-templates', $tpl->getPath());
 	}

@@ -11,7 +11,6 @@ class Frontend extends Process
 {
 	public static function init(): bool
 	{
-		error_log('FrontEnd Init');
 		return self::status(My::checkContext(My::FRONTEND));
 	}
 
@@ -35,7 +34,7 @@ class Frontend extends Process
 		] as $template) {
 			dcCore::app()->tpl->addBlock($template,	[FrontendTemplate::class,$template]);
 		}
-		
+
 		dcCore::app()->addBehaviors([
 			'publicHeadContentV2'		=> [FrontendTemplate::class, 'publicHeadContent'],
 			'publicBeforeDocumentV2'	=> [FrontendTemplate::class, 'addMP3template'],
