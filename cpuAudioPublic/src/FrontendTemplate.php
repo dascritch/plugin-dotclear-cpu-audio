@@ -15,7 +15,7 @@ class FrontendTemplate
 
 	public static function addMP3template() {
 		$tpl = dcCore::app()->tpl;
-		$tpl->setPath(My::path().'/default-templates', $tpl->getPath());
+		$tpl->setPath($tpl->getPath(), My::path().'/default-templates');
 	}
 
 	public static function checkFile(string $path, string $ext, string $content): string {
