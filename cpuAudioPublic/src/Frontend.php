@@ -4,7 +4,7 @@
 
 namespace Dotclear\Plugin\cpuAudioPublic;
 
-use dcCore;
+use Dotclear\App;
 use Dotclear\Core\Process;
 
 class Frontend extends Process
@@ -26,16 +26,16 @@ class Frontend extends Process
 			'OggFile', 'OggFileSize',
 			'HlsFile', 'ChapterFile', 'WaveformFile',
 		] as $template) {
-			dcCore::app()->tpl->addValue($template,	[FrontendTemplate::class,$template]);
+			App::frontend()->template()->addValue($template,	[FrontendTemplate::class,$template]);
 		}
 
 		foreach ([
 			'HasOggFile', 'HasHlsFile', 'HasChapterFile', 'HasWaveformFile'
 		] as $template) {
-			dcCore::app()->tpl->addBlock($template,	[FrontendTemplate::class,$template]);
+			App::frontend()->template()->addBlock($template,	[FrontendTemplate::class,$template]);
 		}
 
-		dcCore::app()->addBehaviors([
+		App::behavior()->addBehaviors([
 			'publicHeadContentV2'		=> [FrontendTemplate::class, 'publicHeadContent'],
 			'publicBeforeDocumentV2'	=> [FrontendTemplate::class, 'addMP3template'],
 		]);

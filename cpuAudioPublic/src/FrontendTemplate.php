@@ -20,29 +20,48 @@ class FrontendTemplate
 
 	public static function checkFile(string $path, string $ext, string $content): string {
 		return '<?php
-					if (file_exists( preg_replace(
-						["/\/podcast\//", "/\.mp3/"],
-						["'.$path.'", "'.$ext.'"],
-						dcCore::app()->ctx->file ) )) {
-				?>'.$content."<?php } ?>";
+
+					$_checkFile_filename = App::frontend()->context()->file;
+					if (!is_null($_checkFile_filename)) {
+
+						if (file_exists( preg_replace(
+							["/\/podcast\//", "/\.mp3/"],
+							["'.$path.'", "'.$ext.'"],
+							$_checkFile_filename ) )) {
+						?>'.$content.'<?php
+						}
+					}
+					unset($_checkFile_filename);
+				?>';
 	}
 
 	public static function fileSize(string $attr, string $ext): string {
 		return '<?php
-					$check_for_file = preg_replace(
-						["/\/podcast\//", "/\.mp3/"],
-						["'.$path.'", "'.$ext.'"],
-						$thisfile);
-					echo filesize($check_for_file);
+					$_checkFile_filename = App::frontend()->context()->file;
+					if (is_null($_checkFile_filename)) {
+						// It s a magic value (bad idea) meaning the original file doesn t seem being available
+						echo -1;
+					} else {
+						$check_for_file = preg_replace(
+							["/\/podcast\//", "/\.mp3/"],
+							["'.$path.'", "'.$ext.'"],
+							App::frontend()->context()->file);
+						echo filesize($check_for_file);
+					}
+					unset($_checkFile_filename);
 				?>';
 	}
 
 	public static function returnUrl(string $path, string  $ext): string  {
 		return '<?php
+					$_checkFile_url = App::frontend()->context()->file;
+					if (!is_null($_checkFile_url)) {
 					echo preg_replace(
 						["/\/podcast\//", "/\.mp3/"],
 						["'.$path.'", "'.$ext.'"],
-						dcCore::app()->ctx->file_url);
+						App::frontend()->context()->file_url);
+					}
+					unset($_checkFile_url);
 				?>';
 	}
 

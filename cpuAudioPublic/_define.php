@@ -17,7 +17,7 @@ $this->registerModule(
 	/* Name */			"CPU Audio",
 	/* Description*/	"CPU Audio for Dotclear",
 	/* Author */		"Da Scritch",
-	/* Version */		'3.0',
+	/* Version */		'3.1',
 	[
 		'requires' 		=> [['core', '2.27']],
 		'priority'      => 1,
